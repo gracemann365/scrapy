@@ -1,0 +1,7 @@
+class MySpider(scrapy.Spider):
+    async def start_requests(self):
+        start_urls: Iterable[str] = await async_queue.get_urls(is_initial=True)
+        for url in start_urls:
+            yield Request(url=url, callback=self.on_initial_url_parser, ...)
+
+    async def on_initial_url_parser(self, response: HtmlResponse, ...):
